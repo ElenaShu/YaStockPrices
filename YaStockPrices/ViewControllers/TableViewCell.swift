@@ -2,7 +2,7 @@
 //  TableViewCell.swift
 //  YaStockPrices
 //
-//  Created by Elenasshu on 17.03.2021.
+//  Created by Elena Shurygina on 17.03.2021.
 //
 
 import UIKit
@@ -15,35 +15,71 @@ class TableViewCell: UITableViewCell {
 
     weak var delegate: TableViewCellDelegate?
     
-    @IBOutlet weak var companyNameLabel: UILabel!
-    @IBOutlet weak var tickerNameLabel: UILabel!
+    @IBOutlet weak var logoImage: UIImageView! {
+        didSet {
+            logoImage.layer.cornerRadius = 15
+        }
+    }
+    @IBOutlet weak var tickerNameLabel: UILabel! {
+        didSet {
+            tickerNameLabel.font = UIFont (name: "HelveticaNeue-Bold", size: 18)
+        }
+    }
     @IBOutlet weak var favouriteButton: UIButton!
-    @IBOutlet weak var dayDeltaLabel: UILabel!
-    @IBOutlet weak var currentPriceLabel: UILabel!
+    @IBOutlet weak var companyNameLabel: UILabel! {
+        didSet{
+            companyNameLabel.font = UIFont (name: "HelveticaNeue", size: 11)
+            companyNameLabel.numberOfLines = 2
+            }
+    }
+    
+    @IBOutlet weak var currentPriceLabel: UILabel!{
+        didSet {
+            currentPriceLabel.font = UIFont (name: "HelveticaNeue-Bold", size: 18)
+        }
+    }
+    @IBOutlet weak var changeLabel: UILabel!
+    @IBOutlet weak var changePercentLabel: UILabel!
+    
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        logoImage.clipsToBounds = true
+        logoImage.contentMode = .scaleAspectFit
+        
     }
     
     func setInfo (stock: StockModel){
+        
+        logoImage?.image = stock.image
         companyNameLabel.text = stock.companyName
+        
         tickerNameLabel.text = stock.tickerName
-        if stock.isFavourite == true {
-            favouriteButton.tintColor = .yellow
+        favouriteButton.tintColor = stock.isFavourite ? .yellow : .gray
+
+        currentPriceLabel.text = stock.currency + "\(stock.currentPrice)"
+        
+        changeLabel.text = stock.dayDeltaString.currency
+        
+        if stock.dayDeltaString.percentage != "" {
+            changePercentLabel.text = stock.dayDeltaString.percentage + "%"
         }
-        else {
-            favouriteButton.tintColor = .gray
+        else{
+            changePercentLabel.text = stock.dayDeltaString.percentage
         }
-        if stock.currency == "₽" {
-            currentPriceLabel.text = "\(stock.currentPrice)" + stock.currency
-            dayDeltaLabel.text = "\(stock.dayDelta.currency)" + stock.currency + " \(stock.dayDelta.percentage)%"
+        
+        if let currency = stock.dayDelta.currency {
+            if (currency >= 0) {
+                changeLabel.textColor = .green
+                changePercentLabel.textColor = .green
+            }
+            else {
+                changeLabel.textColor = .red
+                changePercentLabel.textColor = .red
+            }
         }
-        else {
-            currentPriceLabel.text = stock.currency + "\(stock.currentPrice)"
-            dayDeltaLabel.text = stock.currency + "\(stock.dayDelta.currency) \(stock.dayDelta.percentage)%"
-        }
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

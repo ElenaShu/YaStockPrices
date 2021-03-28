@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  YaStockPrices
 //
-//  Created by Elenasshu on 16.03.2021.
+//  Created by Elena Shurygina on 16.03.2021.
 //
 
 import UIKit

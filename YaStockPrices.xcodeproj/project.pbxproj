@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F018A8F2602794D009BF7D6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A8E2602794D009BF7D6 /* TableViewController.swift */; };
+		3F018A8F2602794D009BF7D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A8E2602794D009BF7D6 /* ViewController.swift */; };
 		3F018A92260279C3009BF7D6 /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A91260279C3009BF7D6 /* StockModel.swift */; };
 		3F018A9626028ABA009BF7D6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A9526028ABA009BF7D6 /* TableViewCell.swift */; };
 		3F018A9A2603332E009BF7D6 /* NetworkStocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */; };
@@ -19,10 +19,12 @@
 		3F8B66052600D8F2004DF096 /* YaStockPrices.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B66032600D8F2004DF096 /* YaStockPrices.xcdatamodeld */; };
 		3F8B66072600D8F6004DF096 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8B66062600D8F6004DF096 /* Assets.xcassets */; };
 		3F8B660A2600D8F6004DF096 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8B66082600D8F6004DF096 /* LaunchScreen.storyboard */; };
+		DCAD345049D1508FD776E220 /* Pods_YaStockPrices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0621DFB5117F4F74553B237B /* Pods_YaStockPrices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F018A8E2602794D009BF7D6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		0621DFB5117F4F74553B237B /* Pods_YaStockPrices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YaStockPrices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F018A8E2602794D009BF7D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F018A91260279C3009BF7D6 /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
 		3F018A9526028ABA009BF7D6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStocksManager.swift; sourceTree = "<group>"; };
@@ -36,6 +38,8 @@
 		3F8B66062600D8F6004DF096 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8B66092600D8F6004DF096 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F8B660B2600D8F6004DF096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9480DB5A3785B67622C1DE12 /* Pods-YaStockPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaStockPrices.release.xcconfig"; path = "Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices.release.xcconfig"; sourceTree = "<group>"; };
+		EF3F76683AECE321FEF3F437 /* Pods-YaStockPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaStockPrices.debug.xcconfig"; path = "Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +47,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCAD345049D1508FD776E220 /* Pods_YaStockPrices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A81EF4DEE7F8087148F9DC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0621DFB5117F4F74553B237B /* Pods_YaStockPrices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3F018A9F26033A55009BF7D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +87,7 @@
 			children = (
 				3F8B65FA2600D8F2004DF096 /* AppDelegate.swift */,
 				3F8B65FC2600D8F2004DF096 /* SceneDelegate.swift */,
-				3F018A8E2602794D009BF7D6 /* TableViewController.swift */,
+				3F018A8E2602794D009BF7D6 /* ViewController.swift */,
 				3F018A9526028ABA009BF7D6 /* TableViewCell.swift */,
 			);
 			path = ViewControllers;
@@ -94,6 +107,8 @@
 			children = (
 				3F8B65F92600D8F2004DF096 /* YaStockPrices */,
 				3F8B65F82600D8F2004DF096 /* Products */,
+				EDAFA5977EE2BD1ABD806BF7 /* Pods */,
+				0A81EF4DEE7F8087148F9DC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,12 +124,22 @@
 			isa = PBXGroup;
 			children = (
 				3F8B660B2600D8F6004DF096 /* Info.plist */,
-				3F018AA226033AC2009BF7D6 /* Supporting files */,
-				3F018AA126033AB2009BF7D6 /* ViewControllers */,
-				3F018AA026033A82009BF7D6 /* Views */,
 				3F018A9F26033A55009BF7D6 /* Models */,
+				3F018AA026033A82009BF7D6 /* Views */,
+				3F018AA126033AB2009BF7D6 /* ViewControllers */,
+				3F018AA226033AC2009BF7D6 /* Supporting files */,
 			);
 			path = YaStockPrices;
+			sourceTree = "<group>";
+		};
+		EDAFA5977EE2BD1ABD806BF7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF3F76683AECE321FEF3F437 /* Pods-YaStockPrices.debug.xcconfig */,
+				9480DB5A3785B67622C1DE12 /* Pods-YaStockPrices.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F8B660E2600D8F6004DF096 /* Build configuration list for PBXNativeTarget "YaStockPrices" */;
 			buildPhases = (
+				49100DD0F1CE486F98F7771E /* [CP] Check Pods Manifest.lock */,
 				3F8B65F32600D8F2004DF096 /* Sources */,
 				3F8B65F42600D8F2004DF096 /* Frameworks */,
 				3F8B65F52600D8F2004DF096 /* Resources */,
+				E6AE6545EBCC1D4671A16B20 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,6 +209,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		49100DD0F1CE486F98F7771E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YaStockPrices-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6AE6545EBCC1D4671A16B20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3F8B65F32600D8F2004DF096 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -192,7 +261,7 @@
 				3F018A9D2603391E009BF7D6 /* Constans.swift in Sources */,
 				3F018A9A2603332E009BF7D6 /* NetworkStocksManager.swift in Sources */,
 				3F018A92260279C3009BF7D6 /* StockModel.swift in Sources */,
-				3F018A8F2602794D009BF7D6 /* TableViewController.swift in Sources */,
+				3F018A8F2602794D009BF7D6 /* ViewController.swift in Sources */,
 				3F018A9626028ABA009BF7D6 /* TableViewCell.swift in Sources */,
 				3F8B65FD2600D8F2004DF096 /* SceneDelegate.swift in Sources */,
 				3F018AAF26034EC3009BF7D6 /* StockData.swift in Sources */,
@@ -272,7 +341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -327,7 +396,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -339,6 +408,7 @@
 		};
 		3F8B660F2600D8F6004DF096 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF3F76683AECE321FEF3F437 /* Pods-YaStockPrices.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -358,6 +428,7 @@
 		};
 		3F8B66102600D8F6004DF096 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9480DB5A3785B67622C1DE12 /* Pods-YaStockPrices.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -2,31 +2,34 @@
 //  StockModel.swift
 //  YaStockPrices
 //
-//  Created by Elenasshu on 17.03.2021.
+//  Created by Elena Shurygina on 17.03.2021.
 //
 
-import Foundation
+import UIKit
 
 struct StockModel {
-    var companyName: String
-    var tickerName: String
+    let companyName: String
+    let tickerName: String
     var isFavourite: Bool
     var currentPrice: Double
     var currentPriceString: String {
         return "\(currentPrice)"
     }
-    var currency: String
-    var dayDelta: (currency: Double, percentage: Double)
+    let currency: String
+    var dayDelta: (currency: Double?, percentage: Double?)
     var dayDeltaString: (currency: String, percentage: String) {
-        return ("\(dayDelta.currency)","\(dayDelta.percentage)")
+        let dayDeltaCurrency = dayDelta.currency != nil ? String(format: "%.2f", dayDelta.currency!) : ""
+        let dayDeltaPercentage = dayDelta.percentage != nil ? String(format: "%.2f", dayDelta.percentage! * 100) : ""
+        return (dayDeltaCurrency, dayDeltaPercentage)
     }
+    var image: UIImage?
     
     init? (stockData: StockData) {
         self.companyName = stockData.companyName
-        self.tickerName = stockData.tickerName
+        self.tickerName = stockData.symbol
         self.isFavourite = false
-        self.currentPrice = stockData.currentPrice
-        self.currency = stockData.currency
-        self.dayDelta = (stockData.dayDelta.currency, stockData.dayDelta.percentage)
+        self.currentPrice = stockData.latestPrice
+        self.currency = "$"
+        self.dayDelta = (stockData.change, (stockData.changePercent) )
     }
 }
