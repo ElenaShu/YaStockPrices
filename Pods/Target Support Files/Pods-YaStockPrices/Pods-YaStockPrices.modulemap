@@ -1,0 +1,6 @@
+framework module Pods_YaStockPrices {
+  umbrella header "Pods-YaStockPrices-umbrella.h"
+
+  export *
+  module * { export * }
+}

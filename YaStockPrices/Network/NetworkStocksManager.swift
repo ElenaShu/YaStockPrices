@@ -21,23 +21,19 @@ class NetworkStocksManager {
     enum RequestType {
         case start (index: String, favouriteStocksCD: Array<FavouriteStock>)
         case fragment (fragment: String)
-        case tickerName (tickerName: String)
         case update (tickerName: String)
     }
     
-    func fetchCurrentStock (forRequestType requestType: RequestType) {
+    func fetch (forRequestType requestType: RequestType) {
         switch requestType {
         case .start(let index, let favouriteStocks):
             guard let urlString = "https://finnhub.io/api/v1/index/constituents?symbol=\(index)&token=\(apiKeyFinnhub)".addingPercentEncoding ( withAllowedCharacters: .urlQueryAllowed ) else {return}
             performRequestStart(withUrlString: urlString, withFavouriteStocks: favouriteStocks)
-            for stock in favouriteStocks { performRequestFavourite(withFavouriteStock: stock) }
+            for stock in favouriteStocks { performRequestFavFromCoreData(withFavouriteStock: stock) }
         case .fragment(let fragment):
             guard fragment.isEmpty == false else {return}
             guard let urlString = "https://finnhub.io/api/v1/search?q=\(fragment)&token=\(apiKeyFinnhub)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
-            /*urlString = "https://cloud.iexapis.com/stable/search/\(fragment)?token=\(apiKey)"*/
             performRequestFinded (withUrlString: urlString)
-        case .tickerName (let tickerName):
-            performRequest(withTickerName: tickerName, withIsFavourite: false, withIsUpdate: false)
         case .update(let tickerName):
             performRequest(withTickerName: tickerName, withIsFavourite: false, withIsUpdate: true)
         }
@@ -73,7 +69,7 @@ class NetworkStocksManager {
         task.resume()
     }
     
-    fileprivate func performRequestFavourite (withFavouriteStock favouriteStock: FavouriteStock) {
+    fileprivate func performRequestFavFromCoreData (withFavouriteStock favouriteStock: FavouriteStock) {
         guard let tickerName = favouriteStock.tickerName else {return}
         guard let urlString = "https://cloud.iexapis.com/stable/stock/\(tickerName)/quote?filter=symbol,companyName,latestPrice,change,changePercent&token=\(apiKey)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         guard let url = URL (string: urlString) else { return }
@@ -85,8 +81,7 @@ class NetworkStocksManager {
                     stockModel.image = UIImage (data: favouriteStock.imageData!)
                     stockModel.isFavourite = true
                     self.delegate?.updateFavouriteStocks(self, with: stockModel)
-                }
-                else {
+                } else {
                     guard let urlStringLogo = "https://cloud.iexapis.com/stable/stock/\(tickerName)/logo?&token=\(apiKey)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                         self.delegate?.updateFavouriteStocks(self, with: stockModel)
                         return
@@ -154,7 +149,7 @@ class NetworkStocksManager {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let data = data, (response as? HTTPURLResponse)?.statusCode == 200 {
-                guard var findedStocks = self.parseJSONFindedFinnhub(withData: data) else {return}
+                guard var findedStocks = self.parseJSONFinded(withData: data) else {return}
                 findedStocks = findedStocks.map({ (value: String) -> String in
                     let index = value.firstIndex(of: ".") ?? value.endIndex
                     let beginning = value[..<index]
@@ -190,18 +185,6 @@ class NetworkStocksManager {
     func parseJSONFinded (withData data: Data) -> [String]? {
         let decoder = JSONDecoder()
         do {
-            let findedWelcome = try decoder.decode (Finded.self, from: data)
-            let findedTickers = findedWelcome.map { welcomeElement in welcomeElement.symbol}
-            return findedTickers
-        } catch let error as NSError {
-            print (error.localizedDescription)
-        }
-        return nil
-    }
-    
-    func parseJSONFindedFinnhub (withData data: Data) -> [String]? {
-        let decoder = JSONDecoder()
-        do {
             let finded = try decoder.decode (FindedFinnhub.self, from: data)
             let findedTickers = finded.result.filter( {$0.type == "Common Stock"} ).reduce( into: [] ) { results, element in results.append(element.symbol)}
             return findedTickers
@@ -227,16 +210,15 @@ class NetworkStocksManager {
     func parseJSONImage (withData data: Data) -> UIImage? {
         let decoder = JSONDecoder()
         do {
-            let stockLogoDict = try decoder.decode (Dictionary<String, String>.self, from: data)
-            guard let stockLogoUrl = stockLogoDict["url"] else { return nil }
-            guard let url = URL (string: stockLogoUrl) else { return nil }
+            let logoDict = try decoder.decode (Dictionary<String, String>.self, from: data)
+            guard let urlString = logoDict["url"] else { return nil }
+            guard let url = URL (string: urlString) else { return nil }
             guard let data = try? Data(contentsOf: url) else { return nil }
             guard let image = UIImage(data: data) else { return nil }
             return image
         } catch let error as NSError {
             print (error)
         }
-        
         return nil
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,11 @@
 		3F018A9A2603332E009BF7D6 /* NetworkStocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */; };
 		3F018A9D2603391E009BF7D6 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A9C2603391D009BF7D6 /* Constans.swift */; };
 		3F018AAF26034EC3009BF7D6 /* StockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018AAE26034EC3009BF7D6 /* StockData.swift */; };
+		3F04495B2610C1C100B705DC /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F04495A2610C1C100B705DC /* DetailedViewController.swift */; };
+		3F044966261108D900B705DC /* NetworkDetailedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F044965261108D900B705DC /* NetworkDetailedManager.swift */; };
+		3F04496A2611121C00B705DC /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0449692611121C00B705DC /* HistoryModel.swift */; };
+		3F413835261233930039FE0C /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F413834261233930039FE0C /* DateValueFormatter.swift */; };
+		3F413841261243210039FE0C /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F413840261243210039FE0C /* BalloonMarker.swift */; };
 		3F8B65FB2600D8F2004DF096 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B65FA2600D8F2004DF096 /* AppDelegate.swift */; };
 		3F8B65FD2600D8F2004DF096 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B65FC2600D8F2004DF096 /* SceneDelegate.swift */; };
 		3F8B66022600D8F2004DF096 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8B66002600D8F2004DF096 /* Main.storyboard */; };
@@ -30,6 +35,11 @@
 		3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStocksManager.swift; sourceTree = "<group>"; };
 		3F018A9C2603391D009BF7D6 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
 		3F018AAE26034EC3009BF7D6 /* StockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockData.swift; sourceTree = "<group>"; };
+		3F04495A2610C1C100B705DC /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		3F044965261108D900B705DC /* NetworkDetailedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDetailedManager.swift; sourceTree = "<group>"; };
+		3F0449692611121C00B705DC /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		3F413834261233930039FE0C /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		3F413840261243210039FE0C /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		3F8B65F72600D8F2004DF096 /* YaStockPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaStockPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8B65FA2600D8F2004DF096 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8B65FC2600D8F2004DF096 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +77,7 @@
 			children = (
 				3F018A91260279C3009BF7D6 /* StockModel.swift */,
 				3F018AAE26034EC3009BF7D6 /* StockData.swift */,
-				3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */,
+				3F0449692611121C00B705DC /* HistoryModel.swift */,
 				3F8B66032600D8F2004DF096 /* YaStockPrices.xcdatamodeld */,
 			);
 			path = Models;
@@ -89,6 +99,8 @@
 				3F8B65FC2600D8F2004DF096 /* SceneDelegate.swift */,
 				3F018A8E2602794D009BF7D6 /* ViewController.swift */,
 				3F018A9526028ABA009BF7D6 /* TableViewCell.swift */,
+				3F04495A2610C1C100B705DC /* DetailedViewController.swift */,
+				3F413840261243210039FE0C /* BalloonMarker.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -100,6 +112,23 @@
 				3F8B66062600D8F6004DF096 /* Assets.xcassets */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		3F413845261250D40039FE0C /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				3F413834261233930039FE0C /* DateValueFormatter.swift */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		3F4138472612615C0039FE0C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */,
+				3F044965261108D900B705DC /* NetworkDetailedManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		3F8B65EE2600D8F2004DF096 = {
@@ -127,6 +156,8 @@
 				3F018A9F26033A55009BF7D6 /* Models */,
 				3F018AA026033A82009BF7D6 /* Views */,
 				3F018AA126033AB2009BF7D6 /* ViewControllers */,
+				3F413845261250D40039FE0C /* Formatters */,
+				3F4138472612615C0039FE0C /* Network */,
 				3F018AA226033AC2009BF7D6 /* Supporting files */,
 			);
 			path = YaStockPrices;
@@ -138,7 +169,6 @@
 				EF3F76683AECE321FEF3F437 /* Pods-YaStockPrices.debug.xcconfig */,
 				9480DB5A3785B67622C1DE12 /* Pods-YaStockPrices.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,10 +288,15 @@
 			files = (
 				3F8B65FB2600D8F2004DF096 /* AppDelegate.swift in Sources */,
 				3F8B66052600D8F2004DF096 /* YaStockPrices.xcdatamodeld in Sources */,
+				3F04495B2610C1C100B705DC /* DetailedViewController.swift in Sources */,
+				3F413835261233930039FE0C /* DateValueFormatter.swift in Sources */,
 				3F018A9D2603391E009BF7D6 /* Constans.swift in Sources */,
+				3F044966261108D900B705DC /* NetworkDetailedManager.swift in Sources */,
 				3F018A9A2603332E009BF7D6 /* NetworkStocksManager.swift in Sources */,
 				3F018A92260279C3009BF7D6 /* StockModel.swift in Sources */,
 				3F018A8F2602794D009BF7D6 /* ViewController.swift in Sources */,
+				3F413841261243210039FE0C /* BalloonMarker.swift in Sources */,
+				3F04496A2611121C00B705DC /* HistoryModel.swift in Sources */,
 				3F018A9626028ABA009BF7D6 /* TableViewCell.swift in Sources */,
 				3F8B65FD2600D8F2004DF096 /* SceneDelegate.swift in Sources */,
 				3F018AAF26034EC3009BF7D6 /* StockData.swift in Sources */,
