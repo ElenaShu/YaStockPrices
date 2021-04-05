@@ -13,13 +13,13 @@ struct StockModel {
     var isFavourite: Bool
     var currentPrice: Double
     var currentPriceString: String {
-        return "\(currentPrice)"
+        return String(format: "%.2f", currentPrice)
     }
     let currency: String
     var dayDelta: (currency: Double?, percentage: Double?)
     var dayDeltaString: (currency: String, percentage: String) {
-        let dayDeltaCurrency = dayDelta.currency != nil ? String(format: "%.2f", dayDelta.currency!) : ""
-        let dayDeltaPercentage = dayDelta.percentage != nil ? String(format: "%.2f", dayDelta.percentage! * 100) : ""
+        let dayDeltaCurrency = dayDelta.currency != nil ? String(format: "%.2f", abs(dayDelta.currency!)) : ""
+        let dayDeltaPercentage = dayDelta.percentage != nil ? String(format: "%.2f", abs(dayDelta.percentage! * 100)) : ""
         return (dayDeltaCurrency, dayDeltaPercentage)
     }
     var image: UIImage?
@@ -31,5 +31,15 @@ struct StockModel {
         self.currentPrice = stockData.latestPrice
         self.currency = "$"
         self.dayDelta = (stockData.change, (stockData.changePercent) )
+    }
+}
+
+struct TickerPrice {
+    let tickerName: String
+    let price: Double
+    
+    init? (webSocketUpdates: WebSocketUpdates) {
+        self.tickerName = webSocketUpdates.s
+        self.price = webSocketUpdates.p
     }
 }

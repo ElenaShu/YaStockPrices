@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3F018A8F2602794D009BF7D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A8E2602794D009BF7D6 /* ViewController.swift */; };
-		3F018A92260279C3009BF7D6 /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A91260279C3009BF7D6 /* StockModel.swift */; };
+		3F018A92260279C3009BF7D6 /* HeadModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A91260279C3009BF7D6 /* HeadModels.swift */; };
 		3F018A9626028ABA009BF7D6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A9526028ABA009BF7D6 /* TableViewCell.swift */; };
 		3F018A9A2603332E009BF7D6 /* NetworkStocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */; };
 		3F018A9D2603391E009BF7D6 /* Constans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018A9C2603391D009BF7D6 /* Constans.swift */; };
-		3F018AAF26034EC3009BF7D6 /* StockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018AAE26034EC3009BF7D6 /* StockData.swift */; };
+		3F018AAF26034EC3009BF7D6 /* JSONModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F018AAE26034EC3009BF7D6 /* JSONModels.swift */; };
 		3F04495B2610C1C100B705DC /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F04495A2610C1C100B705DC /* DetailedViewController.swift */; };
-		3F044966261108D900B705DC /* NetworkDetailedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F044965261108D900B705DC /* NetworkDetailedManager.swift */; };
-		3F04496A2611121C00B705DC /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0449692611121C00B705DC /* HistoryModel.swift */; };
+		3F044966261108D900B705DC /* NetworkChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F044965261108D900B705DC /* NetworkChartManager.swift */; };
+		3F04496A2611121C00B705DC /* DetailedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0449692611121C00B705DC /* DetailedModels.swift */; };
 		3F413835261233930039FE0C /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F413834261233930039FE0C /* DateValueFormatter.swift */; };
 		3F413841261243210039FE0C /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F413840261243210039FE0C /* BalloonMarker.swift */; };
 		3F8B65FB2600D8F2004DF096 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B65FA2600D8F2004DF096 /* AppDelegate.swift */; };
@@ -24,20 +24,29 @@
 		3F8B66052600D8F2004DF096 /* YaStockPrices.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B66032600D8F2004DF096 /* YaStockPrices.xcdatamodeld */; };
 		3F8B66072600D8F6004DF096 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8B66062600D8F6004DF096 /* Assets.xcassets */; };
 		3F8B660A2600D8F6004DF096 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8B66082600D8F6004DF096 /* LaunchScreen.storyboard */; };
+		3FDAA4EA2614F82900CEC90E /* WebSocketPriceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA4E92614F82900CEC90E /* WebSocketPriceManager.swift */; };
+		3FDAA4FB2618E86C00CEC90E /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FDAA4F92618E86C00CEC90E /* NewsTableViewCell.xib */; };
+		3FDAA4FF2618F94000CEC90E /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA4FE2618F94000CEC90E /* ChartViewController.swift */; };
+		3FDAA5052618F98700CEC90E /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA5042618F98700CEC90E /* SummaryTableViewController.swift */; };
+		3FDAA50F2619009E00CEC90E /* NetworkNewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA50E2619009E00CEC90E /* NetworkNewsManager.swift */; };
+		3FDAA51326190E5100CEC90E /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA51226190E5100CEC90E /* NewsViewController.swift */; };
+		3FDAA519261911A900CEC90E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA518261911A900CEC90E /* NewsTableViewCell.swift */; };
+		3FDAA5212619D72400CEC90E /* NetworkSummaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA5202619D72400CEC90E /* NetworkSummaryManager.swift */; };
+		3FDAA525261B46CE00CEC90E /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDAA524261B46CE00CEC90E /* OrderedDictionary.swift */; };
 		DCAD345049D1508FD776E220 /* Pods_YaStockPrices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0621DFB5117F4F74553B237B /* Pods_YaStockPrices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0621DFB5117F4F74553B237B /* Pods_YaStockPrices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YaStockPrices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F018A8E2602794D009BF7D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3F018A91260279C3009BF7D6 /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
+		3F018A91260279C3009BF7D6 /* HeadModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadModels.swift; sourceTree = "<group>"; };
 		3F018A9526028ABA009BF7D6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStocksManager.swift; sourceTree = "<group>"; };
 		3F018A9C2603391D009BF7D6 /* Constans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constans.swift; sourceTree = "<group>"; };
-		3F018AAE26034EC3009BF7D6 /* StockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockData.swift; sourceTree = "<group>"; };
+		3F018AAE26034EC3009BF7D6 /* JSONModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModels.swift; sourceTree = "<group>"; };
 		3F04495A2610C1C100B705DC /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
-		3F044965261108D900B705DC /* NetworkDetailedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDetailedManager.swift; sourceTree = "<group>"; };
-		3F0449692611121C00B705DC /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
+		3F044965261108D900B705DC /* NetworkChartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkChartManager.swift; sourceTree = "<group>"; };
+		3F0449692611121C00B705DC /* DetailedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedModels.swift; sourceTree = "<group>"; };
 		3F413834261233930039FE0C /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		3F413840261243210039FE0C /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		3F8B65F72600D8F2004DF096 /* YaStockPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaStockPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +57,15 @@
 		3F8B66062600D8F6004DF096 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F8B66092600D8F6004DF096 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F8B660B2600D8F6004DF096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FDAA4E92614F82900CEC90E /* WebSocketPriceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketPriceManager.swift; sourceTree = "<group>"; };
+		3FDAA4F92618E86C00CEC90E /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		3FDAA4FE2618F94000CEC90E /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		3FDAA5042618F98700CEC90E /* SummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
+		3FDAA50E2619009E00CEC90E /* NetworkNewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkNewsManager.swift; sourceTree = "<group>"; };
+		3FDAA51226190E5100CEC90E /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		3FDAA518261911A900CEC90E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		3FDAA5202619D72400CEC90E /* NetworkSummaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkSummaryManager.swift; path = YaStockPrices/Main/Network/Detailed/NetworkSummaryManager.swift; sourceTree = SOURCE_ROOT; };
+		3FDAA524261B46CE00CEC90E /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		9480DB5A3785B67622C1DE12 /* Pods-YaStockPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaStockPrices.release.xcconfig"; path = "Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices.release.xcconfig"; sourceTree = "<group>"; };
 		EF3F76683AECE321FEF3F437 /* Pods-YaStockPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YaStockPrices.debug.xcconfig"; path = "Target Support Files/Pods-YaStockPrices/Pods-YaStockPrices.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,63 +90,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3F018A9F26033A55009BF7D6 /* Models */ = {
+		3F018A9F26033A55009BF7D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3F018A91260279C3009BF7D6 /* StockModel.swift */,
-				3F018AAE26034EC3009BF7D6 /* StockData.swift */,
-				3F0449692611121C00B705DC /* HistoryModel.swift */,
+				3F018A91260279C3009BF7D6 /* HeadModels.swift */,
+				3F0449692611121C00B705DC /* DetailedModels.swift */,
+				3F018AAE26034EC3009BF7D6 /* JSONModels.swift */,
 				3F8B66032600D8F2004DF096 /* YaStockPrices.xcdatamodeld */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3F018AA026033A82009BF7D6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3F8B66002600D8F2004DF096 /* Main.storyboard */,
-				3F8B66082600D8F6004DF096 /* LaunchScreen.storyboard */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		3F018AA126033AB2009BF7D6 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				3F8B65FA2600D8F2004DF096 /* AppDelegate.swift */,
-				3F8B65FC2600D8F2004DF096 /* SceneDelegate.swift */,
-				3F018A8E2602794D009BF7D6 /* ViewController.swift */,
-				3F018A9526028ABA009BF7D6 /* TableViewCell.swift */,
-				3F04495A2610C1C100B705DC /* DetailedViewController.swift */,
-				3F413840261243210039FE0C /* BalloonMarker.swift */,
-			);
-			path = ViewControllers;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3F018AA226033AC2009BF7D6 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				3F413834261233930039FE0C /* DateValueFormatter.swift */,
+				3FDAA524261B46CE00CEC90E /* OrderedDictionary.swift */,
 				3F018A9C2603391D009BF7D6 /* Constans.swift */,
 				3F8B66062600D8F6004DF096 /* Assets.xcassets */,
 			);
 			path = "Supporting files";
-			sourceTree = "<group>";
-		};
-		3F413845261250D40039FE0C /* Formatters */ = {
-			isa = PBXGroup;
-			children = (
-				3F413834261233930039FE0C /* DateValueFormatter.swift */,
-			);
-			path = Formatters;
-			sourceTree = "<group>";
-		};
-		3F4138472612615C0039FE0C /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */,
-				3F044965261108D900B705DC /* NetworkDetailedManager.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		3F8B65EE2600D8F2004DF096 = {
@@ -152,15 +133,110 @@
 		3F8B65F92600D8F2004DF096 /* YaStockPrices */ = {
 			isa = PBXGroup;
 			children = (
+				3F018A9F26033A55009BF7D6 /* Model */,
+				3FDAA548261B8D9500CEC90E /* View */,
+				3FDAA549261B8DB200CEC90E /* ViewController */,
+				3FDAA54A261B8E0400CEC90E /* Network */,
 				3F8B660B2600D8F6004DF096 /* Info.plist */,
-				3F018A9F26033A55009BF7D6 /* Models */,
-				3F018AA026033A82009BF7D6 /* Views */,
-				3F018AA126033AB2009BF7D6 /* ViewControllers */,
-				3F413845261250D40039FE0C /* Formatters */,
-				3F4138472612615C0039FE0C /* Network */,
 				3F018AA226033AC2009BF7D6 /* Supporting files */,
 			);
 			path = YaStockPrices;
+			sourceTree = "<group>";
+		};
+		3FDAA548261B8D9500CEC90E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3F8B66002600D8F2004DF096 /* Main.storyboard */,
+				3F8B66082600D8F6004DF096 /* LaunchScreen.storyboard */,
+				3FDAA4F92618E86C00CEC90E /* NewsTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3FDAA549261B8DB200CEC90E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FDAA551261B8FCA00CEC90E /* Main */,
+				3FDAA552261B8FE400CEC90E /* Detailed */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3FDAA54A261B8E0400CEC90E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3FDAA557261B906600CEC90E /* Main */,
+				3FDAA558261B907B00CEC90E /* Detailed */,
+			);
+			name = Network;
+			path = Main/Network;
+			sourceTree = "<group>";
+		};
+		3FDAA551261B8FCA00CEC90E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3F8B65FA2600D8F2004DF096 /* AppDelegate.swift */,
+				3F8B65FC2600D8F2004DF096 /* SceneDelegate.swift */,
+				3F018A8E2602794D009BF7D6 /* ViewController.swift */,
+				3F018A9526028ABA009BF7D6 /* TableViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3FDAA552261B8FE400CEC90E /* Detailed */ = {
+			isa = PBXGroup;
+			children = (
+				3F04495A2610C1C100B705DC /* DetailedViewController.swift */,
+				3FDAA553261B8FFE00CEC90E /* Chart */,
+				3FDAA554261B900900CEC90E /* Summary */,
+				3FDAA555261B901600CEC90E /* News */,
+			);
+			path = Detailed;
+			sourceTree = "<group>";
+		};
+		3FDAA553261B8FFE00CEC90E /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				3F413840261243210039FE0C /* BalloonMarker.swift */,
+				3FDAA4FE2618F94000CEC90E /* ChartViewController.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		3FDAA554261B900900CEC90E /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				3FDAA5042618F98700CEC90E /* SummaryTableViewController.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		3FDAA555261B901600CEC90E /* News */ = {
+			isa = PBXGroup;
+			children = (
+				3FDAA51226190E5100CEC90E /* NewsViewController.swift */,
+				3FDAA518261911A900CEC90E /* NewsTableViewCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		3FDAA557261B906600CEC90E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3F018A992603332E009BF7D6 /* NetworkStocksManager.swift */,
+				3FDAA4E92614F82900CEC90E /* WebSocketPriceManager.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3FDAA558261B907B00CEC90E /* Detailed */ = {
+			isa = PBXGroup;
+			children = (
+				3F044965261108D900B705DC /* NetworkChartManager.swift */,
+				3FDAA5202619D72400CEC90E /* NetworkSummaryManager.swift */,
+				3FDAA50E2619009E00CEC90E /* NetworkNewsManager.swift */,
+			);
+			path = Detailed;
 			sourceTree = "<group>";
 		};
 		EDAFA5977EE2BD1ABD806BF7 /* Pods */ = {
@@ -233,6 +309,7 @@
 			files = (
 				3F8B660A2600D8F6004DF096 /* LaunchScreen.storyboard in Resources */,
 				3F8B66072600D8F6004DF096 /* Assets.xcassets in Resources */,
+				3FDAA4FB2618E86C00CEC90E /* NewsTableViewCell.xib in Resources */,
 				3F8B66022600D8F2004DF096 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,20 +363,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FDAA4EA2614F82900CEC90E /* WebSocketPriceManager.swift in Sources */,
 				3F8B65FB2600D8F2004DF096 /* AppDelegate.swift in Sources */,
+				3FDAA519261911A900CEC90E /* NewsTableViewCell.swift in Sources */,
 				3F8B66052600D8F2004DF096 /* YaStockPrices.xcdatamodeld in Sources */,
+				3FDAA51326190E5100CEC90E /* NewsViewController.swift in Sources */,
 				3F04495B2610C1C100B705DC /* DetailedViewController.swift in Sources */,
+				3FDAA5212619D72400CEC90E /* NetworkSummaryManager.swift in Sources */,
 				3F413835261233930039FE0C /* DateValueFormatter.swift in Sources */,
 				3F018A9D2603391E009BF7D6 /* Constans.swift in Sources */,
-				3F044966261108D900B705DC /* NetworkDetailedManager.swift in Sources */,
+				3FDAA525261B46CE00CEC90E /* OrderedDictionary.swift in Sources */,
+				3F044966261108D900B705DC /* NetworkChartManager.swift in Sources */,
+				3FDAA50F2619009E00CEC90E /* NetworkNewsManager.swift in Sources */,
 				3F018A9A2603332E009BF7D6 /* NetworkStocksManager.swift in Sources */,
-				3F018A92260279C3009BF7D6 /* StockModel.swift in Sources */,
+				3F018A92260279C3009BF7D6 /* HeadModels.swift in Sources */,
 				3F018A8F2602794D009BF7D6 /* ViewController.swift in Sources */,
 				3F413841261243210039FE0C /* BalloonMarker.swift in Sources */,
-				3F04496A2611121C00B705DC /* HistoryModel.swift in Sources */,
+				3F04496A2611121C00B705DC /* DetailedModels.swift in Sources */,
 				3F018A9626028ABA009BF7D6 /* TableViewCell.swift in Sources */,
 				3F8B65FD2600D8F2004DF096 /* SceneDelegate.swift in Sources */,
-				3F018AAF26034EC3009BF7D6 /* StockData.swift in Sources */,
+				3F018AAF26034EC3009BF7D6 /* JSONModels.swift in Sources */,
+				3FDAA4FF2618F94000CEC90E /* ChartViewController.swift in Sources */,
+				3FDAA5052618F98700CEC90E /* SummaryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

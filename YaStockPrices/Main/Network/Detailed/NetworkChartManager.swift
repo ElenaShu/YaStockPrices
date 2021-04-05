@@ -1,5 +1,5 @@
 //
-//  NetworkDetailedManager.swift
+//  NetworkChartManager.swift
 //  YaStockPrices
 //
 //  Created by Elenasshu on 28.03.2021.
@@ -7,20 +7,18 @@
 
 import UIKit
 
-protocol NetworkDetailedManagerDelegate: class {
-    func updateChart (_: NetworkDetailedManager, withArrayHistoryModel arrayHistoryModel: Array <HistoryModel>)
+protocol NetworkChartManagerDelegate: class {
+    func updateChart (_: NetworkChartManager, withArrayHistoryModel arrayHistoryModel: Array <HistoryModel>)
 }
 
-class NetworkDetailedManager {
-    weak var delegate: NetworkDetailedManagerDelegate?
+class NetworkChartManager {
+    weak var delegate: NetworkChartManagerDelegate?
     
     func fetch (forTickerName tickerName: String, forTimeInterval timeInterval: String) {
-        
-        performRequest(withTickerName: tickerName, withTimeInterval: timeInterval)
-        
+        performRequestChart(withTickerName: tickerName, withTimeInterval: timeInterval)
     }
     
-    fileprivate func performRequest (withTickerName tickerName: String, withTimeInterval timeInterval: String ) {
+    fileprivate func performRequestChart (withTickerName tickerName: String, withTimeInterval timeInterval: String ) {
         let urlString =  "https://cloud.iexapis.com/stable/stock/\(tickerName)/chart/\(timeInterval)?&token=\(apiKey)"
         
         guard let url = URL (string: urlString) else { return }
@@ -42,7 +40,7 @@ class NetworkDetailedManager {
         task.resume()
     }
     
-    func parseJSON (withData data: Data) -> [HistoryModel]? {
+    fileprivate func parseJSON (withData data: Data) -> [HistoryModel]? {
         let decoder = JSONDecoder()
         do {
             let arrayHistoryData = try decoder.decode (History.self, from: data)
@@ -58,7 +56,7 @@ class NetworkDetailedManager {
         return nil
     }
     
-    func parseJSONDay (withData data: Data, withTickerName tickerName: String) -> [HistoryModel]? {
+    fileprivate func parseJSONDay (withData data: Data, withTickerName tickerName: String) -> [HistoryModel]? {
         let decoder = JSONDecoder()
         do {
             let arrayHistoryDayData = try decoder.decode (HistoryDay.self, from: data)

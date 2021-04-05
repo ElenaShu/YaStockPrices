@@ -54,7 +54,6 @@ struct HistoryData: Codable {
 typealias History = [HistoryData]
 
 //MARK: - HistoryDayElement
-
 struct HistoryDayData: Codable {
     let date, minute, label: String
     let high, low, open, close: Double?
@@ -65,3 +64,47 @@ struct HistoryDayData: Codable {
 }
 
 typealias HistoryDay = [HistoryDayData]
+
+//MARK: - Data from websockets
+struct WebSocketData: Decodable {
+    
+    let data: [WebSocketUpdates]
+    let type: String
+}
+
+struct WebSocketUpdates: Decodable {
+    
+    let s: String
+    let p: Double
+    let t: Int
+    let v: Int
+    let c: [String]
+}
+
+// MARK: - NewsElement
+struct NewsElement: Codable {
+    let datetime: Int
+    let headline, source: String
+    let url: String
+    let summary, related: String
+    let image: String
+    let lang: String
+    let hasPaywall: Bool
+}
+
+typealias News = [NewsElement]
+
+// MARK: - Company
+struct Company: Codable {
+    let symbol, companyName, exchange, industry: String
+    let website: String
+    let description, CEO, securityName, issueType: String
+    let sector: String
+    let primarySicCode: Int
+    let employees: Int?
+    let tags: [String]
+    let address: String?
+    let address2: String?
+    let state, city, zip, country: String?
+    let phone: String?
+}

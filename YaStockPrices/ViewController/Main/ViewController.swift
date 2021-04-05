@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     private var startStocks = [StockModel]()
     private var favouriteStocks = [StockModel]()
     private var findedStocks = [StockModel]()
+    
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
             return stock.isFavourite
         })
         networkStocksManager.delegate = self
+       // webSocketPriceManager.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -78,39 +80,30 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
     }
     
-    @IBAction func updateStocks(_ sender: UIBarButtonItem) {
-        if isFavouriteSelected {
-            favouriteStocks.forEach { stockModel in
-                networkStocksManager.fetch(forRequestType: .update(tickerName: stockModel.tickerName) )
+    @IBAction func selectPage(_ sender: UIButton) {
+            isFavouriteSelected = sender == favouritePageButton
+            
+            navigationItem.title = sender.currentTitle
+            switch sender {
+            case favouritePageButton:
+                isFavouriteSelected = true
+                setCustomizeSelectedPage (forButton: favouritePageButton)
+                setCustomizeUnselectedPage (forButton: stockPageButton)
+                WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: favouriteStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+            case stockPageButton:
+                isFavouriteSelected = false
+                setCustomizeSelectedPage (forButton: stockPageButton)
+                setCustomizeUnselectedPage (forButton: favouritePageButton)
+                WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: findedStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+            default:
+                return
             }
-        } else {
-            startStocks.forEach { stockModel in
-                networkStocksManager.fetch(forRequestType: .update(tickerName: stockModel.tickerName) )
+            if isFiltering {
+                filterContentForSeatchText(searchText: searchController.searchBar.text!)
             }
+            tableView.reloadData()
         }
-    }
-    
-    @IBAction func selectStockPage(_ sender: UIButton) {
-        isFavouriteSelected = false
-        navigationItem.title = "Stocks"
-        setCustomizeSelectedPage (forButton: stockPageButton)
-        setCustomizeUnselectedPage (forButton: favouritePageButton)
-        if isFiltering {
-            filterContentForSeatchText(searchText: searchController.searchBar.text!)
-        }
-        tableView.reloadData()
-    }
-    
-    @IBAction func selectFavouritePage(_ sender: UIButton) {
-        isFavouriteSelected = true
-        navigationItem.title = "Favourite"
-        setCustomizeSelectedPage (forButton: favouritePageButton)
-        setCustomizeUnselectedPage (forButton: stockPageButton)
-        if isFiltering {
-            filterContentForSeatchText(searchText: searchController.searchBar.text!)
-        }
-        tableView.reloadData()
-    }
+
     
     // MARK: Core Data
     private func getStartStocks () {
@@ -123,6 +116,10 @@ class ViewController: UIViewController {
             print (error.localizedDescription)
         }
         networkStocksManager.fetch( forRequestType: .start(index: index, favouriteStocksCD: favStocksCoreData) )
+        
+        WebSocketPriceManager.shared.connectToWebSocket()
+        
+        startUpdatingPrices()
     }
     
     private func saveFSCoreData (withStockModel stockModel: StockModel) {
@@ -174,6 +171,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         90
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         let stock = isFiltering ? findedStocks[indexPath.row] : ( isFavouriteSelected ? favouriteStocks[indexPath.row] : startStocks[indexPath.row] )
@@ -260,6 +258,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 if let index: Int = self.startStocks.firstIndex(where: {$0.tickerName == self.findedStocks[indexPath.row].tickerName}) {
                     self.startStocks[index].isFavourite = false
                 }
+                WebSocketPriceManager.shared.unSubscribe(forTickerName: self.findedStocks[indexPath.row].tickerName)
                 self.deleteFSCoreData(withTickerName: self.findedStocks[indexPath.row].tickerName)
                 self.findedStocks.remove(at: indexPath.row)
             }
@@ -268,6 +267,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 if let stockCurrentIndex: Int = self.startStocks.firstIndex(where: {$0.tickerName == removeStock.tickerName}) {
                     self.startStocks[stockCurrentIndex].isFavourite = false
                 }
+                WebSocketPriceManager.shared.unSubscribe(forTickerName: removeStock.tickerName)
                 self.deleteFSCoreData(withTickerName: removeStock.tickerName)
             }
             self.tableView.reloadData()
@@ -288,6 +288,11 @@ extension ViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
         findedStocks = []
+        if isFavouriteSelected {
+            WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: favouriteStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+        } else {
+            WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: startStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+        }
         tableView.reloadData()
     }
     
@@ -301,6 +306,7 @@ extension ViewController: UISearchBarDelegate {
             findedStocks = startStocks.filter({ $0.tickerName.uppercased().contains(searchText.uppercased()) || $0.companyName.uppercased().contains(searchText.uppercased()) })
             networkStocksManager.fetch(forRequestType: .fragment(fragment: searchText) )
         }
+        WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: findedStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
         tableView.reloadData()
     }
     
@@ -309,7 +315,7 @@ extension ViewController: UISearchBarDelegate {
 // MARK: - NetworkStocksManagerDelegate
 extension ViewController: NetworkStocksManagerDelegate {
     
-    func updateInterface(_: NetworkStocksManager, with stockModel: StockModel) {
+    func updateStocks(_: NetworkStocksManager, with stockModel: StockModel) {
         DispatchQueue.main.async {
             if self.isFiltering {
                 if (!self.startStocks.contains(where: { stock in stock.tickerName == stockModel.tickerName } ) ) {
@@ -317,6 +323,8 @@ extension ViewController: NetworkStocksManagerDelegate {
                 }
             } else {
                 self.startStocks.append (stockModel)
+                WebSocketPriceManager.shared.subscribe(forTickerName: stockModel.tickerName)
+                
                 self.startStocks.sort(by: { $0.tickerName < $1.tickerName })
             }
             self.tableView.reloadData()
@@ -341,18 +349,35 @@ extension ViewController: NetworkStocksManagerDelegate {
             self.favouritePageButton.isEnabled = true
         }
     }
+}
+
+// MARK: - WebSocketPriceManager
+extension ViewController {
     
-    func updatePrices(_: NetworkStocksManager, with stockModel: StockModel) {
-        DispatchQueue.main.async {
-            if let index = self.startStocks.firstIndex(where: { $0.tickerName == stockModel.tickerName}) {
-                self.startStocks[index].currentPrice = stockModel.currentPrice
-                self.startStocks[index].dayDelta = stockModel.dayDelta
+    private func startUpdatingPrices () {
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            WebSocketPriceManager.shared.receiveData {  [weak self] (dataArray) in
+                guard let self = self else {return}
+                guard let dataArray = dataArray else { return }
+                dataArray.forEach{ data in
+                    if let index = self.findedStocks.firstIndex(where: { stockModel in
+                        stockModel.tickerName == data.s
+                    }) {
+                        self.findedStocks[index].currentPrice = data.p
+                    }
+                    if let index = self.favouriteStocks.firstIndex(where: { stockModel in
+                        stockModel.tickerName == data.s
+                    }) {
+                        self.favouriteStocks[index].currentPrice = data.p
+                    }
+                    if let index = self.startStocks.firstIndex(where: { stockModel in
+                        stockModel.tickerName == data.s
+                    }) {
+                        self.startStocks[index].currentPrice = data.p
+                    }
+                }
+                
             }
-            if let index = self.favouriteStocks.firstIndex(where: { $0.tickerName == stockModel.tickerName}) {
-                self.favouriteStocks[index].currentPrice = stockModel.currentPrice
-                self.favouriteStocks[index].dayDelta = stockModel.dayDelta
-            }
-            
             self.tableView.reloadData()
         }
     }
@@ -423,7 +448,14 @@ extension ViewController {
         super.prepare(for: segue, sender: sender)
         guard segue.identifier == "ShowDetailed" else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let stock = startStocks[indexPath.row]
+        var stock: StockModel
+        if isFiltering{
+            stock = findedStocks[indexPath.row]
+        } else if isFavouriteSelected {
+            stock = favouriteStocks[indexPath.row]
+        } else {
+            stock = startStocks[indexPath.row]
+        }
         let detailedVC = segue.destination as! DetailedViewController
         detailedVC.stockModel = stock
         detailedVC.title = stock.tickerName + " - " + stock.companyName

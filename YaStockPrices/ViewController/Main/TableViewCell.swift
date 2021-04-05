@@ -38,8 +38,11 @@ class TableViewCell: UITableViewCell {
             currentPriceLabel.font = UIFont (name: "HelveticaNeue-Bold", size: 18)
         }
     }
-    @IBOutlet weak var changeLabel: UILabel!
-    @IBOutlet weak var changePercentLabel: UILabel!
+    @IBOutlet weak var changeLabel: UILabel! {
+        didSet {
+            changeLabel.font = UIFont (name: "HelveticaNeue", size: 11)
+        }
+    }
     
     
     
@@ -58,28 +61,21 @@ class TableViewCell: UITableViewCell {
         tickerNameLabel.text = stock.tickerName
         favouriteButton.tintColor = stock.isFavourite ? .yellow : .gray
 
-        currentPriceLabel.text = stock.currency + "\(stock.currentPrice)"
+        currentPriceLabel.text = stock.currency + stock.currentPriceString
         
-        changeLabel.text = stock.dayDeltaString.currency
-        
-        if stock.dayDeltaString.percentage != "" {
-            changePercentLabel.text = stock.dayDeltaString.percentage + "%"
-        }
-        else{
-            changePercentLabel.text = stock.dayDeltaString.percentage
-        }
         
         if let currency = stock.dayDelta.currency {
             if (currency >= 0) {
+                
+                changeLabel.text = "+\(stock.currency)\(stock.dayDeltaString.currency) (\(stock.dayDeltaString.percentage)%)"
+
                 changeLabel.textColor = .green
-                changePercentLabel.textColor = .green
             }
             else {
+                changeLabel.text = "-\(stock.currency)\(stock.dayDeltaString.currency) (\(stock.dayDeltaString.percentage)%)"
                 changeLabel.textColor = .red
-                changePercentLabel.textColor = .red
             }
         }
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -1,25 +1,23 @@
 //
-//  DetailedViewController.swift
+//  chartView.swift
 //  YaStockPrices
 //
-//  Created by Elenasshu on 28.03.2021.
+//  Created by Elenasshu on 03.04.2021.
 //
 
-import Charts
 import UIKit
+import Charts
 
-class DetailedViewController: UIViewController, ChartViewDelegate {
+class ChartViewController: UIViewController, ChartViewDelegate {
 
     var stockModel: StockModel?
     private var arrayHistoryModel = [HistoryModel]()
+
     var lineChart = LineChartView()
-    
-    var networkDetailedManager = NetworkDetailedManager ()
     
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var chartView: LineChartView!
-    
     @IBOutlet weak var dayButton: UIButton!
     @IBOutlet weak var weekButton: UIButton!
     @IBOutlet weak var monthButton: UIButton!
@@ -27,12 +25,14 @@ class DetailedViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var yearButton: UIButton!
     @IBOutlet weak var twoYearsButton: UIButton!
     
-    var selectedButton = UIButton()
-    var selectedTimeInterval = "1D"
+    private var selectedDayButton = UIButton()
+    private var selectedTimeInterval = "1D"
     
-    override func viewDidLoad() {
+    var networkChartManager = NetworkChartManager ()
+    
+    override func viewDidLoad () {
         super.viewDidLoad()
-        navigationController?.navigationBar.tintColor = UIColor(named: "TextColor")
+
         if let stockModel = self.stockModel {
             priceLabel.text = "$" + stockModel.currentPriceString
             changeLabel.text = "$\(stockModel.dayDeltaString.currency) (\(stockModel.dayDeltaString.percentage)%)"
@@ -45,37 +45,36 @@ class DetailedViewController: UIViewController, ChartViewDelegate {
                 }
             }
         }
-        networkDetailedManager.delegate = self
-        selectedButton = dayButton
-        selectedButton.backgroundColor = UIColor(named: "TextColor")
-        selectedButton.titleLabel?.textColor = UIColor(named: "BackgroundColorEvenCell")
+        
+        networkChartManager.delegate = self
+        selectedDayButton = dayButton
+        selectedDayButton.backgroundColor = UIColor(named: "TextColor")
+        selectedDayButton.titleLabel?.textColor = UIColor(named: "BackgroundColorEvenCell")
         if let tickerName = stockModel?.tickerName {
-            networkDetailedManager.fetch(forTickerName: tickerName, forTimeInterval: "1D")
+            networkChartManager.fetch(forTickerName: tickerName, forTimeInterval: "1D")
         }
         
         lineChart.delegate = self
-        
     }
+    
     @IBAction func buttonAction(_ sender: UIButton) {
         guard let stockModel = stockModel else { return }
-        selectedButton.backgroundColor = UIColor(named: "BackgroundColorEvenCell")
-        selectedButton.titleLabel?.textColor = UIColor(named: "TextColor")
+        selectedDayButton.backgroundColor = UIColor(named: "BackgroundColorEvenCell")
+        selectedDayButton.titleLabel?.textColor = UIColor(named: "TextColor")
         
         selectedTimeInterval = sender.titleLabel!.text!
         sender.backgroundColor = UIColor(named: "TextColor")
         sender.titleLabel?.textColor = UIColor(named: "BackgroundColorEvenCell")
-        selectedButton = sender
+        selectedDayButton = sender
         
         var timeInterval = sender.titleLabel!.text!
         if timeInterval.count == 1 {
             timeInterval.insert("1", at: timeInterval.startIndex)
         }
-        networkDetailedManager.fetch(forTickerName: stockModel.tickerName, forTimeInterval: timeInterval)
+        networkChartManager.fetch(forTickerName: stockModel.tickerName, forTimeInterval: timeInterval)
     }
     
-    
-    
-    func updateChartData () {
+    private func updateChartData () {
         
         chartView.setScaleEnabled(true)
         
@@ -151,22 +150,18 @@ class DetailedViewController: UIViewController, ChartViewDelegate {
         set.lineWidth = 2
         set.circleRadius = 1
         set.valueFont = .systemFont(ofSize: 10)
-        
-        //set.mode = .horizontalBezier
-        
 
         let data = LineChartData(dataSet: set)
         chartView.data = data
     }
-
+    
 }
 
-extension DetailedViewController: NetworkDetailedManagerDelegate {
-    func updateChart(_: NetworkDetailedManager, withArrayHistoryModel arrayHistoryModel: Array<HistoryModel>) {
+extension ChartViewController: NetworkChartManagerDelegate {
+    func updateChart(_: NetworkChartManager, withArrayHistoryModel arrayHistoryModel: Array<HistoryModel>) {
         DispatchQueue.main.async {
             self.arrayHistoryModel = arrayHistoryModel
             self.updateChartData()
         }
     }
 }
-
