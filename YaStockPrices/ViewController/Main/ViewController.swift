@@ -44,7 +44,6 @@ class ViewController: UIViewController {
             return stock.isFavourite
         })
         networkStocksManager.delegate = self
-       // webSocketPriceManager.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -89,12 +88,20 @@ class ViewController: UIViewController {
                 isFavouriteSelected = true
                 setCustomizeSelectedPage (forButton: favouritePageButton)
                 setCustomizeUnselectedPage (forButton: stockPageButton)
-                WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: favouriteStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+                if isFiltering {
+                    WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: findedStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+                } else {
+                    WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: favouriteStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+                }
             case stockPageButton:
                 isFavouriteSelected = false
                 setCustomizeSelectedPage (forButton: stockPageButton)
                 setCustomizeUnselectedPage (forButton: favouritePageButton)
+                if isFiltering {
                 WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: findedStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+                } else {
+                    WebSocketPriceManager.shared.subscribeArray(forArrayTickerNames: startStocks.reduce( into: [] ) { results, element in results.append(element.tickerName)})
+                }
             default:
                 return
             }
